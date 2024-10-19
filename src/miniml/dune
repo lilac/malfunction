@@ -1,0 +1,16 @@
+
+(ocamllex (modules lexer))
+(menhir (modules parser))
+
+(executable
+ (name miniml)
+ (modules miniml)
+ (libraries miniml)
+ (modes native))
+
+ (library
+  (name miniml)
+  (wrapped false)
+  (modules (:standard \ miniml))
+  (modes native))
+ 
