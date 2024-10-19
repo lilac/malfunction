@@ -45,15 +45,6 @@ let rec string_of_expr e = to_str (-1) e
     if m < n then "(" ^ str ^ ")" else str
 
 
-let rec string_of_type = function
-  | Type.Unit -> "unit"
-  | Type.Bool  -> "bool"
-  | Type.Float -> "float"
-  | Type.Fun (ts, t) -> "(" ^ pp_list (List.map (string_of_type) ts) ^ " -> " ^ (string_of_type t) ^ ")"
-  | Type.Var({ contents = Some t }) -> "var-some: " ^ string_of_type t
-  | Type.Var({ contents = None }) -> "unknown"
-
-
 let rec string_of_inter e = i_to_str (-1) e
   and
     i_to_str n e =
@@ -111,7 +102,7 @@ let string_of_closure_fundef { Closure.name = (x, t);
                                Closure.formal_fv = fvs;
                                Closure.takes_closure = tc;
                                Closure.body = e } =
-  "fundef: " ^ x ^ " funtyp: " ^ string_of_type t ^ " args:" ^ pp_list (List.map fst yts) ^ " {env: " ^ pp_list (List.map fst fvs) ^ "} takes_closure: " ^ string_of_bool tc ^ "  body: " ^ string_of_closure_expr e
+  "fundef: " ^ x ^ " funtyp: " ^ Type.string_of_type t ^ " args:" ^ pp_list (List.map fst yts) ^ " {env: " ^ pp_list (List.map fst fvs) ^ "} takes_closure: " ^ string_of_bool tc ^ "  body: " ^ string_of_closure_expr e
 
 let string_of_prog = function
   | Closure.Prog (defs, e) ->

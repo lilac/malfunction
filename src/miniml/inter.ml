@@ -76,7 +76,7 @@ let rec normalize env = function
                           let argp = List.map (normalize env) e2s in
                           let argv, argt = List.split argp in
                           Let((f, funtyp), x, App((f, t, argt), argv)), t
-      | _ -> failwith ("Bad app type: " ^ Prettyprint.string_of_type funtyp))
+      | _ -> failwith ("Bad app type: " ^ Type.string_of_type funtyp))
 
 
 let inter_rep e = fst (normalize (Env.empty) e)

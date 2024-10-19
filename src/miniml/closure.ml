@@ -40,12 +40,6 @@ let rec freevar = function
   | AppDir (_, es) -> List.fold_left (fun s e -> S.union (freevar e) s) S.empty es
 
 
-(* helper function for printing a list *)
-let rec pp_list = function
-  | [] -> ""
-  | [x] -> x
-  | x :: xs -> x ^ " " ^ pp_list xs
-
 let rec convert env known = function
   | Inter.Unit -> Unit
   | Inter.Bool b -> Bool b
@@ -69,7 +63,7 @@ let rec convert env known = function
      let known', e1', isclosure =
        if S.is_empty free_vars then known', e1', false else
          (* body of the function contains free variables *)
-         (Format.eprintf "free variable(s) %s found in function %s@." (pp_list (S.elements free_vars)) x;
+         (Format.eprintf "free variable(s) %s found in function %s@." (Type.pp_list (S.elements free_vars)) x;
           Format.eprintf "function %s cannot be directly applied@. " x;
           (* revert toplevel to the backup, removing the current function *)
           toplevel := toplevel_backup;

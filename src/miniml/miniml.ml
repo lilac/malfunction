@@ -21,7 +21,7 @@ let prog_of_lex lex =
   print_endline (Prettyprint.string_of_prog prog);
 
   print_endline "external functions:";
-  Env.iter (fun name typ -> print_endline (name ^ " : " ^ Prettyprint.string_of_type typ)) !Typing.extenv;
+  Env.iter (fun name typ -> print_endline (name ^ " : " ^ Type.string_of_type typ)) !Typing.extenv;
 
   prog
 

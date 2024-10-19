@@ -11,6 +11,7 @@
  (library
   (name miniml)
   (wrapped false)
+  (flags -warn-error -a)
   (modules (:standard \ miniml))
   (modes native))
  
