@@ -4,14 +4,16 @@
 
 (executable
  (name miniml)
+ (flags (:standard -warn-error -a))
  (modules miniml)
- (libraries miniml)
+ (libraries malfunction lib)
  (modes native))
 
  (library
-  (name miniml)
-  (wrapped false)
-  (flags -warn-error -a)
+  (name lib)
+  (public_name malfunction.miniml)
+  (flags (:standard -warn-error -a))
   (modules (:standard \ miniml))
+  ; (libraries malfunction)
   (modes native))
  

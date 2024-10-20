@@ -1,3 +1,13 @@
+module Prettyprint = Lib.Prettyprint
+module Type = Lib.Type
+module Typing = Lib.Typing
+module Inter = Lib.Inter
+module Alpha = Lib.Alpha
+module Closure = Lib.Closure
+module Env = Lib.Env
+module Parser = Lib.Parser
+module Lexer = Lib.Lexer
+
 let prog_of_lex lex =
   let ast = Parser.exp Lexer.token lex in
 
@@ -69,6 +79,6 @@ let main =
     let prog   =  prog_of_lex lexbuf in
     let outfname = basename Sys.argv.(1) ^ ".ll" in
     let externlst = extern_fun () in
-    Compile.compile outfname prog externlst
+    Lib.Compile.compile outfname prog externlst
   else
     repl ()

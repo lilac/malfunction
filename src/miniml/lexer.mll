@@ -1,7 +1,7 @@
 {
   open Lexing
   open Parser
-  open Type
+  (* open Type *)
 }
 
 let space = [' ' '\t' '\n' '\r']
